@@ -1,0 +1,37 @@
+File,Note,Cents,Uncertainty,Notes,Quality,Position
+Bb_2_1,Bb2,10,5,dirty,4,1
+Bb_2_2,Bb2,0,8,very wavy,5,1
+A_2_1,A2,-2,5,,6,2
+Ab_2_1,Ab2,0,5,,7,3
+G_2_1,G2,-5,5,,7,4
+Gb_2_1,Gb2,-3,6,,6,5
+F_2_1,F2,10,5,wavy,5,6
+E_2_1,E2,-2,6,wavy,6,7
+B_2_1,B2,-4,8,very wavy,5,7
+C_3_1,C3,-8,4,shaky start,5,6
+Db_3_1,Db3,0,5,wavy,5,5
+D_3_1,D3,-5,5,moved sharper,5,4
+Eb_3_1,Eb3,-7,3,,6,3
+E_3_1,E3,-5,5,,6,2
+F_3_1,F3,-2,4,starts sharp,7,1
+Gb_3_1,Gb3,0,2,,8,5
+G_3_1,G3,0,5,bad entry,7,4
+Ab_3_1,Ab3,-5,4,,8,3
+A_3_1,A3,-7,4,went flat,6,2
+Bb_3_1,Bb3,0,3,went flat,7,1
+B_3_1,B3,5,4,,8,4
+C_4_1,C4,0,3,shaky,6,3
+Db_4_1,Db4,5,3,shaky,6,2
+D_4_1,D4,-1,3,,7,1
+Eb_4_1,Eb4,-3,4,,8,3
+F_4_1,F4,2,4,,8,1
+E_4_1,E4,-2,3,loud,7,2
+F_4_2,F4,4,4,,9,4
+Gb_4_1,Gb4,-5,2,,8,3
+G_4_1,G4,5,5,,7,2
+G_4_2,G4,3,5,,6,4
+Ab_4_1,Ab4,5,4,,6,3
+A_4_1,A4,-9,2,loud,6,2
+Bb_4_1,Bb4,2,2,,8,1
+B_4_1,B4,10,5,starts sharp,6,2
+C_5_1,C5,-5,6,wavy and bad entry,5,1
