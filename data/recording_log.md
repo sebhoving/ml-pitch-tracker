@@ -10,7 +10,7 @@ APP SETTINGS: .wav, mono, 0 gain, no extra audio modification
 MIC DISTANCE AND ANGLE: 90 degrees, charging port facing bell, 1m away
 TUNER APP: Pitch Tuner (laptop) by tadao yamoaka
 TUNER RESOLUTION, GREEN ZONE WIDTH, AND REFERENCE PITCH: .1 cents/ .01 Hz, 10 cents (+-5), A4 = 440Hz
-APP DETAILS: 32 bit-depth, 
+APP DETAILS: 16 bit-depth, 
 metadata csv column headings:
 filename
 concert note

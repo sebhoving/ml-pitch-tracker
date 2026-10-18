@@ -6,7 +6,7 @@ import librosa
 import pandas as pd
 
 
-#debug = True
+# debug = True
 
 ''' =====================================
             Editable Settings
@@ -66,7 +66,7 @@ def yin_pitch(audio):
 def score_instrument(instrument, pitch_method, metadata: pd.DataFrame):
   all_pred = []
   all_true = []
-
+  results = []
 
   for index, row in metadata.iterrows():
 
@@ -81,13 +81,15 @@ def score_instrument(instrument, pitch_method, metadata: pd.DataFrame):
     hz = librosa.note_to_hz(row["Note"]) * np.exp2(row["Cents"]/1200)
 
     true = np.full_like(f0, hz)
-    all_pred.append(f0)
-    all_true.append(true)
+    #all_pred.append(f0)
+    #all_true.append(true)
+    results.append(evaluate(f0, true, instrument))
 
-  all_pred = np.concatenate(all_pred)
-  all_true = np.concatenate(all_true)
+  #all_pred = np.concatenate(all_pred)
+  #all_true = np.concatenate(all_true)
 
-  results = evaluate(all_pred, all_true, instrument)
+  results = pd.DataFrame.from_records(results)
+  #results = evaluate(all_pred, all_true, instrument) ALL COMMETED OUT TO ALLOW INDIVIDUAL FILE SCORING
   return results
 
 def YIN_test():
@@ -112,9 +114,9 @@ def YIN_test():
 def main():
   metadata_path = DATA_DIR / 'metadata.csv'
   results = score_instrument(INSTRUMENT, yin_pitch, pd.read_csv(metadata_path))
+  
 
-
-  print("Evaluation Results:", results)
+  print("Evaluation Results:", '\n',  results.sort_values('mae_cents'))
 
 if __name__ == "__main__":
   main()
