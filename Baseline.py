@@ -25,6 +25,7 @@ TRIM_S = 0.3             # dropped from each end of every file (attack and relea
 FMIN_NOTE, FMAX_NOTE = 'E2', 'F5'
 THRESHOLDS_C = [50, 20, 10]
 AUDIO_EXTS = {'.wav', '.m4a', '.mp3', '.flac', '.aac', '.ogg'}
+SILENCE_DB = -20
 
 ''' ====================================='''
 
@@ -75,7 +76,11 @@ def score_instrument(instrument, pitch_method, metadata: pd.DataFrame):
     f0 = pitch_method(audio)
 
     times = librosa.times_like(f0, sr=SR, hop_length=HOP_LENGTH)
-    keep = (times > TRIM_S) & (times < (audio.shape[0]/SR - TRIM_S))
+    time_mask = (times > TRIM_S) & (times < (audio.shape[0]/SR - TRIM_S))
+
+    Amps = librosa.feature.rms(y=audio,hop_length=HOP_LENGTH)
+    loud_mask = librosa.amplitude_to_db(Amps[0], ref=np.max) > SILENCE_DB
+    keep = time_mask & loud_mask
     f0 = f0[keep]
 
     hz = librosa.note_to_hz(row["Note"]) * np.exp2(row["Cents"]/1200)
@@ -83,7 +88,12 @@ def score_instrument(instrument, pitch_method, metadata: pd.DataFrame):
     true = np.full_like(f0, hz)
     #all_pred.append(f0)
     #all_true.append(true)
-    results.append(evaluate(f0, true, instrument))
+
+    result_dict = evaluate(f0, true, instrument)
+    result_dict['file'] = row['File']
+    result_dict['voiced_fraction'] = keep.mean()
+    results.append(result_dict)
+    
 
   #all_pred = np.concatenate(all_pred)
   #all_true = np.concatenate(all_true)
@@ -117,6 +127,7 @@ def main():
   
 
   print("Evaluation Results:", '\n',  results.sort_values('mae_cents'))
+  print("mean, median" , results['mae_cents'].mean(), results['median_cents'].mean())
 
 if __name__ == "__main__":
   main()
