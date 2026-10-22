@@ -1,5 +1,5 @@
 # ml-pitch-tracker
-A CNN tool which tracks instrument pitch, giving players real time information on their intonation.
+A CNN tool which tracks instrument pitch, giving players informative analysis on their intonation.
 
 ## Baseline: YIN on trombone (M1, 20 Oct 2026)
 
